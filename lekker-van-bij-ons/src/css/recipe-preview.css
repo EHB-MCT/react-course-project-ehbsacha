@@ -29,4 +29,5 @@
 
 .previewDetail {
   color: var(--detailGreen);
+  padding: 4px;
 }
