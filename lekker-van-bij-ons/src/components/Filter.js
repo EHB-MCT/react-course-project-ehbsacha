@@ -1,4 +1,4 @@
-import { fetchRecipes } from '../services/apiService';
+import backgroundImage from '../img/backgroundImage.jpg';
 import React, { useState, useEffect } from 'react';
 
 function Filter() {
@@ -13,6 +13,9 @@ function Filter() {
 
   return (
     <div>
+      <div className="filterHeader">
+        <img src={backgroundImage} alt="" />
+      </div>
       {recipes.map(test => {
         return <p>{test.id}</p>
       })}
