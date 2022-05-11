@@ -19,7 +19,7 @@ function Filter() {
         <img src={backgroundImage} alt="" />
       </div>
       <div className="filterContent">
-        <FilterSystem />
+        <FilterSystem recipes={recipes} />
         <div className="recipePreviewBlock">
           {recipes.map(recipe => {
             return <PrewiewBlock recipe={recipe} />
