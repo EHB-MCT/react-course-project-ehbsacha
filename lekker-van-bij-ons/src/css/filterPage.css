@@ -4,9 +4,16 @@
   object-fit: cover;
 }
 
-.recipePreviewBlock {
+.filterContent {
+  display: flex;
+  flex-direction: row;
   padding: 10%;
-  width: 80%;
+}
+
+.recipePreviewBlock {
+  /* padding: 10%; */
+  padding: 0 0 0 5%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

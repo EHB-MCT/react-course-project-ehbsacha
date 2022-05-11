@@ -1,5 +1,6 @@
 import backgroundImage from '../img/backgroundImage.jpg';
 import PrewiewBlock from './PreviewBlock';
+import FilterSystem from './FilterSystem';
 import React, { useState, useEffect } from 'react';
 
 function Filter() {
@@ -17,12 +18,13 @@ function Filter() {
       <div className="filterHeader">
         <img src={backgroundImage} alt="" />
       </div>
-      <div class="recipePreviewBlock">
-        {recipes.map(recipe => {
-          return <PrewiewBlock recipe={recipe} />
-          // return <p>{test.id}</p>
-        })}
-        {/* <Recipe-preview ngFor="let recipe of recipes | async | slice:0:8" [recipe]="recipe"> */}
+      <div className="filterContent">
+        <FilterSystem />
+        <div className="recipePreviewBlock">
+          {recipes.map(recipe => {
+            return <PrewiewBlock recipe={recipe} />
+          })}
+        </div>
       </div>
     </div>
   );

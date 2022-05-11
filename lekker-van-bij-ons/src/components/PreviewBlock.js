@@ -15,7 +15,6 @@ function PrewiewBlock(props) {
           })}</p>
         <p className="previewDetail">Heeft een score van: {recipe.score}</p>
         <p className="previewDetail">Duurt ongeveer {Math.floor(recipe.time / 60)}h en {recipe.time - Math.floor(recipe.time / 60) * 60}min</p>
-        <p></p>
       </div>
     </div>
   );
