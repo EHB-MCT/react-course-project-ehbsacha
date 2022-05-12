@@ -2,6 +2,9 @@
 @import url(./css/app.css);
 @import url(./css/navigation.css);
 @import url(./css/footer.css);
+@import url(./css/filterPage.css);
+@import url(./css/recipe-preview.css);
+@import url(./css/filterSystem.css);
 
 * {
   margin: 0;
