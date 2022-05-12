@@ -1,4 +1,6 @@
-import { fetchRecipes } from '../services/apiService';
+import backgroundImage from '../img/backgroundImage.jpg';
+import PrewiewBlock from './PreviewBlock';
+import FilterSystem from './FilterSystem';
 import React, { useState, useEffect } from 'react';
 
 function Filter() {
@@ -13,9 +15,18 @@ function Filter() {
 
   return (
     <div>
-      {recipes.map(test => {
-        return <p>{test.id}</p>
-      })}
+      <div className="filterHeader">
+        <img src={backgroundImage} alt="" />
+      </div>
+      <p class="title">Op deze pagina kunt u filteren</p>
+      <div className="filterContent">
+        <FilterSystem recipes={recipes} />
+        <div className="recipePreviewBlock">
+          {recipes.slice(0, 9).map(recipe => {
+            return <PrewiewBlock recipe={recipe} key={recipe.id} />
+          })}
+        </div>
+      </div>
     </div>
   );
 }
