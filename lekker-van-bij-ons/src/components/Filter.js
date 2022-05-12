@@ -18,6 +18,7 @@ function Filter() {
       <div className="filterHeader">
         <img src={backgroundImage} alt="" />
       </div>
+      <p class="title">Op deze pagina kunt u filteren</p>
       <div className="filterContent">
         <FilterSystem recipes={recipes} />
         <div className="recipePreviewBlock">
