@@ -21,8 +21,8 @@ function Filter() {
       <div className="filterContent">
         <FilterSystem recipes={recipes} />
         <div className="recipePreviewBlock">
-          {recipes.map(recipe => {
-            return <PrewiewBlock recipe={recipe} />
+          {recipes.slice(0, 9).map(recipe => {
+            return <PrewiewBlock recipe={recipe} key={recipe.id} />
           })}
         </div>
       </div>

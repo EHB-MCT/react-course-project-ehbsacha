@@ -8,12 +8,12 @@ function PrewiewBlock(props) {
         <img src={recipe.image} alt="Lekker van bij ons logo" />
       </div>
       <div className="previewText">
-        <p className="previewTitle" key={recipe.id}>{recipe.title}</p>
-        <p className="previewDetail">type:
+        <p className="previewTitle">{recipe.title}</p>
+        <div className="previewDetail">type:
           {recipe.dishTypes.map(type => {
-            return <div>- {type}</div>
+            return <div key={type.toString()}>- {type}</div>
           })}
-        </p>
+        </div>
         <p className="previewDetail">Heeft een score van: {recipe.score}</p>
         <p className="previewDetail">Duurt ongeveer {Math.floor(recipe.time / 60)}h en {recipe.time - Math.floor(recipe.time / 60) * 60}min</p>
       </div>

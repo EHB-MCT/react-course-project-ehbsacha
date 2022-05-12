@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 function FilterSystem(props) {
 
   var recipes = props.recipes
-  console.log(recipes);
 
   const [typeList, setTypes] = useState([])
-  console.log(typeList)
 
   function getList() {
     recipes.map(recipe => {
@@ -22,24 +20,17 @@ function FilterSystem(props) {
   return (
     <div className="filterSystem">
       <p className="filterTitle">Filter opties</p>
-      {recipes.map(recipe => {
-        {
-          return <p>{
-            recipe.dishTypes.map(type => {
-              return <div>- {type}</div>
-            })
-          }</p>
-        }
-      })}
-      <p className="previewDetail">type:
+      <div className="filterBlock">
+        <p className="filterBlockTitle">type:</p>
         {typeList.map(type => {
-          return <div>- {type}</div>
+          return <label className="checkLabel" key={type.toString()}>
+            <p className="typeName">{type}</p>
+            <input type="checkbox" />
+            <span className="chkmrk"></span>
+          </label>
         })}
-      </p>
+      </div>
       {getList()}
-      {/* {filterButtons()}
-      {filterButtons()}
-      {filterButtons()} */}
     </div>
   );
 }
