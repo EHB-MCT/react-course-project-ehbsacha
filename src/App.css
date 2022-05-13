@@ -8,13 +8,18 @@
 
 * {
   margin: 0;
-  font-family: roboto !important;
+  font-family: roboto;
 }
 
 a,
 button,
 input {
   all: unset;
+}
+
+a {
+  margin: 0;
+  font-family: roboto;
 }
 
 :root {
