@@ -13,20 +13,20 @@ footer {
 }
 
 .footerComponent a {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 18px;
-  padding: 8px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  font-size: 18px !important;
+  padding: 8px !important;
 }
 
 .footerComponent a i {
-  font-size: 22px;
-  width: 30px;
+  font-size: 22px !important;
+  width: 30px !important;
 }
 
 .footerComponent a img {
-  height: 125px;
+  height: 125px !important;
 }
 
 footer .t {
