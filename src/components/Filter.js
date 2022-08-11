@@ -6,11 +6,15 @@ import React, { useState, useEffect } from 'react';
 function Filter() {
 
   const [recipes, setList] = useState([]);
+  let baseUrl = 'https://api.spoonacular.com/recipes/complexSearch?'
+  let query = 'query=pasta'
+  let extraVariables = '&addRecipeInformation=true&number=5'
+  let apiKey = '&apiKey=9d27c0e3e70247c2a0b1861d56e60375'
 
   useEffect(() => {
-    fetch(`https://recepten-liese-c.herokuapp.com/recipes`)
+    fetch(`${baseUrl}${query}${extraVariables}${apiKey}`)
       .then((response) => response.json())
-      .then((data) => setList(data))
+      .then((data) => setList(data.results))
   }, [])
 
   return (
@@ -18,7 +22,7 @@ function Filter() {
       <div className="filterHeader">
         <img src={backgroundImage} alt="" />
       </div>
-      <p class="title">Op deze pagina kunt u filteren</p>
+      <p className="title">Op deze pagina kunt u filteren</p>
       <div className="filterContent">
         <FilterSystem recipes={recipes} />
         <div className="recipePreviewBlock">
