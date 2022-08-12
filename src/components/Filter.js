@@ -13,17 +13,22 @@ function Filter() {
   // c4f7d95969c34c009df7bfc1b3f31347
   // fd29be03ea994da0a1d828da3d843a44
   // 66cb98c71b8e4c1e8bb94007b62a14c5
+  // 3cea7defa0894eb69af1b16ead313107
+  // a5a02c1e5a15414092f974b1aff77a10
+  // 1e8cf27f56954a8095c6c173cfcc52e6
+
+  // password
 
   // Constant values
   const baseUrl = 'https://api.spoonacular.com/'
   const typeOfRoute = 'recipes/complexSearch?';
   const returnAllRecipeInformation = true
   const limit = 9;
-  const apiKey = '66cb98c71b8e4c1e8bb94007b62a14c5'
+  const apiKey = '1e8cf27f56954a8095c6c173cfcc52e6'
   const endUrl = `&number=${limit}&addRecipeInformation=${returnAllRecipeInformation}&apiKey=${apiKey}`
 
   // recipes are stored here
-  const [recipes, setList] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
   // Updating variables
   const [query, setQuery] = useState(['pasta', 'carrot']);
@@ -32,7 +37,7 @@ function Filter() {
   const [intolerances, setIntolerances] = useState([]);
 
   // fullUrl items get updated
-  var extraVariables = `query=${query.toString()}&intolerances=${intolerances.toString()}&type=${typeList}`;
+  var extraVariables = `query=${query.toString()}&intolerances=${intolerances.toString()}&type=${typeFilter}`;
 
   var fullUrl = `${baseUrl}${typeOfRoute}${extraVariables}${endUrl}`;
 
@@ -42,11 +47,19 @@ function Filter() {
   useEffect(() => {
     fetch(`${fullUrl}`)
       .then((response) => response.json())
-      .then((data) => setList(data.results))
-  }, [])
+      .then((data) => setRecipes(data.results))
+  }, []);
 
-  function logFun() {
-    console.log(typeFilter)
+  useEffect(() => {
+    //call function when something change in state
+    updateFetch();
+  }, [typeFilter, intolerances])
+
+  function updateFetch() {
+    setRecipes([]);
+    fetch(fullUrl)
+      .then((response) => response.json())
+      .then((data) => setRecipes(data.results))
   }
 
   return (
@@ -56,8 +69,20 @@ function Filter() {
       </div>
       <p className="title">Op deze pagina kunt u filteren</p>
       <div className="filterContent">
-        <FilterSystem setTypes={setTypes} setTypeFilter={setTypeFilter} typeFilter={typeFilter} recipes={recipes} typeList={typeList} />
-        {logFun()}
+        <FilterSystem
+
+          // Recipes
+          recipes={recipes}
+
+          // The funcion and variables to set types
+          setTypes={setTypes}
+          typeList={typeList}
+
+
+          // The funcion and variables to set types
+          setTypeFilter={setTypeFilter}
+          typeFilter={typeFilter} />
+
         <div className="recipePreviewBlock">
           {recipes.slice(0, 9).map(recipe => {
             return <PrewiewBlock recipe={recipe} key={recipe.id} />
@@ -67,5 +92,5 @@ function Filter() {
     </div>
   );
 }
-
+// setRecipes(data.results)
 export default Filter;

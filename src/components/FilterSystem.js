@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 function FilterSystem(props) {
 
-  var recipes = props.recipes;
-
-  // const [typeList, setTypes] = useState([])
+  const { recipes, setTypes, typeList, setTypeFilter, typeFilter } = props;
 
   function getTypeList() {
     recipes.map(recipe => {
       recipe.dishTypes.map(type => {
-        if (!props.typeList.includes(type)) {
-          props.setTypes(props.typeList.concat(type));
+        if (!typeList.includes(type)) {
+          setTypes(typeList.concat(type));
         }
       })
     })
@@ -17,21 +15,21 @@ function FilterSystem(props) {
 
   function updateTypeFilter(updateType) {
 
-    if (!props.typeFilter.includes(updateType)) {
+    if (!typeFilter.includes(updateType)) {
 
-      props.setTypeFilter(props.typeFilter.concat(updateType));
+      setTypeFilter(typeFilter.concat(updateType));
 
     } else {
 
       var array = [];
 
-      props.typeFilter.map(type => {
+      typeFilter.map(type => {
         if (type != updateType) {
           array = array.concat(type);
         }
       });
 
-      props.setTypeFilter(array);
+      setTypeFilter(array);
     }
   }
 
@@ -46,7 +44,7 @@ function FilterSystem(props) {
       {getTypeList()}
       <div className="filterBlock">
         <p className="filterBlockTitle">Type:</p>
-        {props.typeList.map(type => {
+        {typeList.map(type => {
           return (
             <label className="checkLabel" key={type.toString()}>
               <p className="typeName">{type}</p>
@@ -60,9 +58,5 @@ function FilterSystem(props) {
     </div>
   );
 }
-
-// onClick={function () {
-//   props.setTypeFilter(type);
-// }}
 
 export default FilterSystem;
