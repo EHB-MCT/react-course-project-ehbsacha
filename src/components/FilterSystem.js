@@ -3,32 +3,37 @@ function FilterSystem(props) {
 
   var recipes = props.recipes;
 
-  const [typeList, setTypes] = useState([])
-  // const [timeList, setTime] = useState([])
+  // const [typeList, setTypes] = useState([])
 
   function getTypeList() {
     recipes.map(recipe => {
       recipe.dishTypes.map(type => {
-        if (!typeList.includes(type)) {
-          setTypes(typeList.concat(type))
+        if (!props.typeList.includes(type)) {
+          props.setTypes(props.typeList.concat(type));
         }
       })
     })
   }
 
-  // function getDurationList() {
-  //   recipes.map(recipe => {
-  //     console.log(recipe);
-  //     if (!timeList.includes(recipe.time)) {
+  function updateTypeFilter(updateType) {
 
-  //       setTime(timeList.concat(recipe.time))
-  //     }
-  //   })
-  //   const newList = timeList.sort(function (a, b) { return a - b })
-  //   if (timeList !== newList) {
-  //     setTime(newList)
-  //   }
-  // }
+    if (!props.typeFilter.includes(updateType)) {
+
+      props.setTypeFilter(props.typeFilter.concat(updateType));
+
+    } else {
+
+      var array = [];
+
+      props.typeFilter.map(type => {
+        if (type != updateType) {
+          array = array.concat(type);
+        }
+      });
+
+      props.setTypeFilter(array);
+    }
+  }
 
   return (
     <div className="filterSystem">
@@ -41,31 +46,23 @@ function FilterSystem(props) {
       {getTypeList()}
       <div className="filterBlock">
         <p className="filterBlockTitle">Type:</p>
-        {typeList.map(type => {
-          return <label className="checkLabel" key={type.toString()}>
-            <p className="typeName">{type}</p>
-            <input type="checkbox" />
-            <span className="chkmrk"></span>
-          </label>
+        {props.typeList.map(type => {
+          return (
+            <label className="checkLabel" key={type.toString()}>
+              <p className="typeName">{type}</p>
+              <input type="checkbox" key={type.toString()} onClick={() => updateTypeFilter(type)} />
+              <span className="chkmrk"></span>
+            </label>
+          );
         })}
       </div>
-
-
-      {/* {getDurationList()}
-      <div className="filterBlock">
-        <p className="filterBlockTitle">Time:</p>
-        {timeList.map(time => {
-          console.log(time);
-          return <label className="checkLabel" key={time.toString()}>
-            <p className="typeName">{time}</p>
-            <input type="checkbox" />
-            <span className="chkmrk"></span>
-          </label>
-        })}
-      </div> */}
 
     </div>
   );
 }
+
+// onClick={function () {
+//   props.setTypeFilter(type);
+// }}
 
 export default FilterSystem;
