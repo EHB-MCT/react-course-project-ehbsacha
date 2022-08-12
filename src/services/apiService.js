@@ -3,7 +3,7 @@ class RecipeService {
 
     // basic required stuff
     baseUrl = `https://api.spoonacular.com/`;
-    key = `98fe6b3b568e43a1abfa764bed5db7f8`;
+    key = `4ecc407c12194edba39ef3a6d51b5d3f`;
     apiKey = `&apiKey=${this.key}`;
 
     // type of search
@@ -39,5 +39,6 @@ class RecipeService {
 // a5a02c1e5a15414092f974b1aff77a10
 // 1e8cf27f56954a8095c6c173cfcc52e6
 // 98fe6b3b568e43a1abfa764bed5db7f8
+// 4ecc407c12194edba39ef3a6d51b5d3f
 
 export const recipeService = new RecipeService();

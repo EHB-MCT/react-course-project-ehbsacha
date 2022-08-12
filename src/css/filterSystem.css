@@ -54,7 +54,7 @@
   padding-top: 5px;
 }
 
-input[type="number"] {
+input[type="text"] {
   background-color: white;
   width: 50px;
   border: 1px var(--detailGreen) solid;
