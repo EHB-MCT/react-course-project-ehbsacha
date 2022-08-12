@@ -27,12 +27,10 @@ function Filter() {
   }, []);
 
   useEffect(() => {
-    //call function when something change in state
     updateFetch();
   }, [query, typeFilter, intolerances])
 
   function updateFetch() {
-    // setRecipes([]);
     recipeService.complexSearchFetch(extraVariables)
       .then((data) => setRecipes(data.results))
       .then(console.log(query, typeFilter, intolerances))
