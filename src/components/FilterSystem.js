@@ -41,22 +41,18 @@ function FilterSystem(props) {
           <button onClick={
             function (event) {
               event.preventDefault();
-              updateQueryFilter(document.getElementById('search').value);
+              updateQueryFilter(document.getElementById('search').value.toLowerCase());
             }}>
             <i className="fas fa-search"></i>
           </button>
         </form>
-        {/* <label className="checkLabel">
-          <p className="typeName"></p>
-          <input type="checkbox" onClick={() => updateTypeFilter()} />
-          <span className="chkmrk"></span>
-        </label> */}
+        <p className="filterBlockTitle">Active Search items</p>
+        {query.map(item => {
+          return (
+            <div>{item}</div>
+          )
+        })}
       </div>
-      {/* <p className="filterTitle">Filter opties</p>
-      <div className="filterBlock">
-        <p className="filterBlockTitle">Score:</p>
-        <input type="number" placeholder="0" min="0" max="100" />
-      </div> */}
 
       {getTypeList()}
       <div className="filterBlock">
@@ -65,7 +61,7 @@ function FilterSystem(props) {
           return (
             <label className="checkLabel" key={type.toString()}>
               <p className="typeName">{type}</p>
-              <input type="checkbox" key={type.toString()} onClick={() => updateTypeFilter(type)} />
+              <input type="checkbox" key={type.toString()} onClick={() => updateTypeFilter(type.toLowerCase())} />
               <span className="chkmrk"></span>
             </label>
           );
