@@ -1,22 +1,31 @@
+import { recipeService } from '../services/apiService';
+
 function PrewiewBlock(props) {
 
   var recipe = props.recipe
 
   return (
     <div className="previewBlock">
-      <div className="imagePart">
-        <img src={recipe.image} alt="Lekker van bij ons logo" />
-      </div>
-      <div className="previewText">
-        <p className="previewTitle">{recipe.title}</p>
-        <div className="previewDetail">type:
-          {recipe.dishTypes.map(type => {
-            return <div key={type.toString()}>- {type}</div>
-          })}
+      <a href={`${recipeService.angular}/recipe/${recipe.id}`}>
+        <div className="imagePart">
+          <img src={recipe.image} alt="Lekker van bij ons logo" />
         </div>
-        <p className="previewDetail">Heeft een score van: {recipe.score}</p>
-        <p className="previewDetail">Duurt ongeveer {Math.floor(recipe.time / 60)}h en {recipe.time - Math.floor(recipe.time / 60) * 60}min</p>
-      </div>
+        <div className="previewText">
+          <p className="previewTitle">{recipe.title}</p>
+          <div className="previewDetail">type:
+            {recipe.dishTypes.map(type => {
+              return <div key={type.toString()}>- {type}</div>
+            })}
+          </div>
+          <div className="previewDetail">diets:
+            {recipe.diets.map(diet => {
+              return <div key={diet.toString()}>- {diet}</div>
+            })}
+          </div>
+          <p className="previewDetail">Heeft een healthScore van: {recipe.healthScore}</p>
+          <p className="previewDetail">Heeft een weightWatcherSmartPoints van: {recipe.weightWatcherSmartPoints}</p>
+        </div>
+      </a>
     </div>
   );
 }

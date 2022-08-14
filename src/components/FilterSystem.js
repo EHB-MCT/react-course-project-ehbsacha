@@ -1,68 +1,74 @@
 import React, { useState, useEffect } from 'react';
 function FilterSystem(props) {
 
-  var recipes = props.recipes;
-  console.log(recipes)
+  const { getTypeList, typeList, setTypeFilter, typeFilter, setQuery, query } = props;
 
-  const [typeList, setTypes] = useState([])
-  const [timeList, setTime] = useState([])
-
-  function getTypeList() {
-    recipes.map(recipe => {
-      {
-        recipe.dishTypes.map(type => {
-          if (!typeList.includes(type)) {
-            setTypes(typeList.concat(type))
-          }
-        })
-      }
-    })
+  function updateQueryFilter(newQuery) {
+    if (!query.includes(newQuery)) {
+      setQuery(query.concat(newQuery));
+    } else {
+      var array = [];
+      query.map(type => {
+        if (type != newQuery) {
+          array = array.concat(type);
+        }
+      });
+      setQuery(array);
+    }
   }
 
-  function getDurationList() {
-    recipes.map(recipe => {
-      {
-        if (!timeList.includes(recipe.time)) {
-          setTime(timeList.concat(recipe.time))
+  function updateTypeFilter(updateType) {
+    if (!typeFilter.includes(updateType)) {
+      setTypeFilter(typeFilter.concat(updateType));
+    } else {
+      var array = [];
+      typeFilter.map(type => {
+        if (type != updateType) {
+          array = array.concat(type);
         }
-      }
-    })
-    const newList = timeList.sort(function (a, b) { return a - b })
-    if (timeList !== newList) {
-      setTime(newList)
+      });
+      setTypeFilter(array);
     }
   }
 
   return (
     <div className="filterSystem">
-      <p className="filterTitle">Filter opties</p>
+
       <div className="filterBlock">
-        <p className="filterBlockTitle">Score:</p>
-        <input type="number" placeholder="0" min="0" max="100" />
+        <p className="filterBlockTitle">Search:</p>
+        <form>
+          <input type="text" id="search"></input>
+          <button onClick={
+            function (event) {
+              event.preventDefault();
+              updateQueryFilter(document.getElementById('search').value.toLowerCase());
+            }}>
+            <i className="fas fa-search"></i>
+          </button>
+        </form>
+        <p className="filterBlockTitle">Active Search items</p>
+        {query.map(item => {
+          return (
+            <div>{item}</div>
+          )
+        })}
       </div>
+
+      {getTypeList()}
       <div className="filterBlock">
         <p className="filterBlockTitle">Type:</p>
         {typeList.map(type => {
-          return <label className="checkLabel" key={type.toString()}>
-            <p className="typeName">{type}</p>
-            <input type="checkbox" />
-            <span className="chkmrk"></span>
-          </label>
+          return (
+            <label className="checkLabel" key={type.toString()}>
+              <p className="typeName">{type}</p>
+              <input type="checkbox" key={type.toString()} onClick={() => updateTypeFilter(type.toLowerCase())} />
+              <span className="chkmrk"></span>
+            </label>
+          );
         })}
       </div>
-      {getTypeList()}
-      <div className="filterBlock">
-        <p className="filterBlockTitle">Time:</p>
-        {timeList.map(time => {
-          return <label className="checkLabel" key={time.toString()}>
-            <p className="typeName">{time}</p>
-            <input type="checkbox" />
-            <span className="chkmrk"></span>
-          </label>
-        })}
-      </div>
-      {getDurationList()}
-    </div>
+
+    </div >
   );
 }
 
